@@ -60,6 +60,81 @@
         .company-name {
             color: #928cb9 !important;
         }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            width: 90%;
+            max-width: 1100px;
+            max-height: 90vh;
+        }
+        
+        .lightbox-content video {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            display: block;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        
+        .video-thumbnail-container {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 0.125rem; /* rounded-sm */
+        }
+        
+        .video-thumbnail-container::after {
+            content: '\25B6'; /* Play symbol */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+        
+        .video-thumbnail-container:hover::after {
+            color: rgba(255, 255, 255, 1);
+        }
+        
+        .video-thumbnail-container img {
+             transition: transform 0.3s ease;
+        }
+        
+        .video-thumbnail-container:hover img {
+             transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="bg-black font-sans antialiased tracking-wide" style="color: white;">
@@ -78,7 +153,7 @@
             <div class="project-card">
                 <div class="flex-grow">
                     <div class="flex items-baseline">
-                        <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline w-full" style="color: white;">Data Visualization Tool <span class="text-xl font-light tracking-wide ml-4 company-name">Boston Dynamics</span></h2>
+                        <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline w-full" style="color: white;">Data Visualization Tool <span class="text-xl font-light tracking-wide ml-4 company-name">Agility Robotics</span></h2>
                     </div>
                 </div>
                 
@@ -122,10 +197,10 @@
                 <div class="lg:flex flex-row-reverse gap-16 mt-12">
                     <div class="lg:w-1/2 mb-12 lg:mb-0 relative">
                         <div class="absolute -inset-0.5 bg-purple-900/20 opacity-20 blur-sm rounded-sm"></div>
-                        <video controls class="w-full relative z-10 rounded-sm">
-                            <source src="videos/data_review_tool-2021-12-10_10.58.51.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <div class="video-thumbnail-container relative z-10" data-video-src="videos/data_review_tool-2021-12-10_10.58.51.mp4">
+                            <img src="images/data_review_tool_thumb.png" alt="Data Review Tool Video Thumbnail" class="w-full">
+                            <!-- Placeholder for video source -->
+                        </div>
                     </div>
                     <div class="lg:w-1/2">
                         <div class="flex flex-wrap gap-5 mb-8">
@@ -192,10 +267,10 @@
                 <div class="lg:flex gap-16 mt-12">
                     <div class="lg:w-1/2 mb-12 lg:mb-0 relative">
                         <div class="absolute -inset-0.5 bg-purple-900/20 opacity-20 blur-sm rounded-sm"></div>
-                        <video controls class="w-full relative z-10 rounded-sm">
-                            <source src="videos/gtfs-demo.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                         <div class="video-thumbnail-container relative z-10" data-video-src="videos/gtfs-demo.mp4">
+                            <img src="images/gtfs_thumb.png" alt="GTFS Manager Video Thumbnail" class="w-full">
+                            <!-- Placeholder for video source -->
+                        </div>
                     </div>
                     <div class="lg:w-1/2">
                         <div class="flex flex-wrap gap-5 mb-8">
@@ -249,8 +324,56 @@
             </div>
         </section>
         
-       
+        <!-- Lightbox Modal -->
+        <div id="video-lightbox" class="lightbox">
+            <div class="lightbox-content">
+                <video id="lightbox-video" controls autoplay muted playsinline></video>
+                <button class="lightbox-close">&times;</button>
+            </div>
+        </div>
+        
     </div>
+
+    <script>
+        const lightbox = document.getElementById('video-lightbox');
+        const lightboxVideo = document.getElementById('lightbox-video');
+        const videoTriggers = document.querySelectorAll('.video-thumbnail-container');
+        const closeButton = document.querySelector('.lightbox-close');
+
+        videoTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const videoSrc = trigger.getAttribute('data-video-src');
+                if (videoSrc) {
+                    lightboxVideo.src = videoSrc;
+                    lightbox.classList.add('active');
+                    // Muted autoplay is generally allowed
+                    lightboxVideo.play().catch(error => console.error("Video autoplay failed:", error)); 
+                }
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            lightboxVideo.pause();
+            lightboxVideo.src = ''; // Stop loading the video
+        }
+
+        closeButton.addEventListener('click', closeLightbox);
+        
+        // Optional: Close lightbox when clicking the background overlay
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) { // Check if the click is on the overlay itself
+                closeLightbox();
+            }
+        });
+        
+        // Optional: Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
 
