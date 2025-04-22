@@ -4,122 +4,203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#000000',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+        
+        /* Title underline */
+        .title-underline::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin-top: 12px;
+        }
+        
+        /* Force all text to be white */
+        * {
+            color: #ffffff !important;
+        }
+        
+        .company-name {
+            color: #7b68ee !important;
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="contact-info">
-                <p>Email: your.email@example.com</p>
+<body class="bg-black font-sans antialiased tracking-wide" style="color: white;">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+        <!-- Header with subtle divider -->
+        <header class="mb-24 pb-6 border-b border-gray-800">
+            <div class="flex justify-between items-center">
+                <div class="contact-info">
+                    <p class="text-sm tracking-wider" style="color: white;">Email: your.email@example.com</p>
+                </div>
+                <div class="text-sm tracking-wider" style="color: white;">
+                    UI/UX Designer
+                </div>
             </div>
         </header>
 
-        <section id="projects" class="projects-section">
-            <!-- Project 1 -->
+        <section id="projects" class="space-y-32">
+            <!-- Project 1: Data Visualization Tool -->
             <div class="project-card">
-                <h2>Financial App Redesign</h2>
-                <div class="project-content">
-                    <div class="project-image">
-                        <img src="images/project1.jpg" alt="Financial App Redesign">
+                <div class="flex flex-col md:flex-row justify-between items-baseline mb-10">
+                    <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline" style="color: white;">Data Visualization Tool</h2>
+                    <div class="text-xl font-light tracking-wide mt-2 md:mt-0 company-name">Agility Robotics</div>
+                </div>
+                
+                <div class="lg:flex gap-16 mt-12">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 relative">
+                        <div class="absolute -inset-0.5 bg-purple-900/20 opacity-20 blur-sm rounded-sm"></div>
+                        <img src="images/DigitSensors-1024x746.png" alt="Data Visualization Tool Screenshot" class="w-full relative z-10 rounded-sm">
                     </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span>Mobile App</span>
-                            <span>UX Research</span>
-                            <span>UI Design</span>
+                    <div class="lg:w-1/2">
+                        <div class="flex flex-wrap gap-5 mb-8">
+                            <span class="text-sm tracking-wider" style="color: white;">Data Visualization</span>
+                            <span class="text-sm tracking-wider opacity-50" style="color: white;">•</span>
+                            <span class="text-sm tracking-wider" style="color: white;">UI Design</span>
+                            <span class="text-sm tracking-wider opacity-50" style="color: white;">•</span>
+                            <span class="text-sm tracking-wider" style="color: white;">User Experience</span>
                         </div>
-                        <div class="project-description">
-                            <h4>Functionality</h4>
-                            <p>A complete redesign of a personal finance application focused on simplifying expense tracking and budget management. The app features customizable dashboards, automated categorization, and visual spending reports.</p>
+                        
+                        <div>
+                            <h4 class="text-2xl mt-10 mb-5 font-light" style="color: white;">Improvements</h4>
+                            <p class="mb-8 font-light leading-relaxed" style="color: white;">The Data Visualization Tool was redesigned to improve data clarity and user interaction. Key improvements included a more intuitive interface, enhanced chart readability, and streamlined navigation between different visualization types. The tool now offers customizable dashboards and real-time data filtering capabilities.</p>
                             
-                            <h4>Design Process</h4>
-                            <p>The redesign began with extensive user interviews to identify pain points in the existing app. I created user flows, wireframes, and interactive prototypes which underwent several rounds of usability testing. The final design incorporated user feedback while maintaining brand consistency.</p>
+                            <h4 class="text-2xl mt-12 mb-5 font-light" style="color: white;">Process</h4>
+                            <p class="font-light leading-relaxed" style="color: white;">The redesign process began with analyzing user pain points and identifying key opportunities for improvement. After conducting stakeholder interviews and usability testing, I developed wireframes and interactive prototypes that were iteratively refined based on user feedback. The final implementation resulted in a more powerful yet accessible visualization system.</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Project 2 -->
+            <!-- Subtle separator -->
+            <div class="w-full h-px bg-gray-800"></div>
+            
+            <!-- Project 2: Data Review Tool -->
             <div class="project-card">
-                <h2>E-commerce Website Optimization</h2>
-                <div class="project-content reverse">
-                    <div class="project-image">
-                        <video controls>
-                            <source src="videos/project2.mp4" type="video/mp4">
+                <div class="flex flex-col md:flex-row justify-between items-baseline mb-10">
+                    <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline" style="color: white;">Data Review Tool</h2>
+                    <div class="text-xl font-light tracking-wide mt-2 md:mt-0 company-name">Boston Dynamics</div>
+                </div>
+                
+                <div class="lg:flex flex-row-reverse gap-16 mt-12">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 relative">
+                        <div class="absolute -inset-0.5 bg-purple-900/20 opacity-20 blur-sm rounded-sm"></div>
+                        <video controls class="w-full relative z-10 rounded-sm">
+                            <source src="videos/data_review_tool-2021-12-10_10.58.51.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span>Web Design</span>
-                            <span>Conversion Optimization</span>
-                            <span>Responsive Design</span>
+                    <div class="lg:w-1/2">
+                        <div class="flex flex-wrap gap-5 mb-8">
+                            <span class="text-sm tracking-wider" style="color: white;">Data Management</span>
+                            <span class="text-sm tracking-wider opacity-50" style="color: white;">•</span>
+                            <span class="text-sm tracking-wider" style="color: white;">Review Interface</span>
+                            <span class="text-sm tracking-wider opacity-50" style="color: white;">•</span>
+                            <span class="text-sm tracking-wider" style="color: white;">Workflow Optimization</span>
                         </div>
-                        <div class="project-description">
-                            <h4>Functionality</h4>
-                            <p>A comprehensive redesign of an e-commerce platform to improve user flow and increase conversion rates. The design includes simplified navigation, enhanced product filtering, and a streamlined checkout process.</p>
+                        
+                        <div>
+                            <h4 class="text-2xl mt-10 mb-5 font-light" style="color: white;">Improvements</h4>
+                            <p class="mb-8 font-light leading-relaxed" style="color: white;">The Data Review Tool was enhanced to streamline the data validation and review process. The redesign focused on improving data presentation, adding batch processing capabilities, and implementing a more efficient approval workflow. The tool now features error highlighting, comparison views, and automated quality checks.</p>
                             
-                            <h4>Design Process</h4>
-                            <p>I started by analyzing user behavior data and heatmaps to identify drop-off points. After creating a strategic redesign plan, I developed wireframes and high-fidelity mockups. A/B testing was used to validate design decisions, resulting in a 35% increase in conversion rate.</p>
+                            <h4 class="text-2xl mt-12 mb-5 font-light" style="color: white;">Process</h4>
+                            <p class="font-light leading-relaxed" style="color: white;">The development process started with shadowing data reviewers to understand their daily workflows and challenges. I created user journey maps to identify bottlenecks and conducted workshops to generate solution ideas. After prototyping key interactions, the design was validated through task-based testing with actual users, resulting in a more efficient review system.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Project 3 -->
-            <div class="project-card">
-                <h2>Health Tracking Dashboard</h2>
-                <div class="project-content">
-                    <div class="project-image">
-                        <img src="images/project3.jpg" alt="Health Tracking Dashboard">
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span>Web Application</span>
-                            <span>Data Visualization</span>
-                            <span>Accessibility</span>
-                        </div>
-                        <div class="project-description">
-                            <h4>Functionality</h4>
-                            <p>A health monitoring dashboard designed for healthcare providers to track patient data efficiently. The interface provides customizable views, real-time alerts, and comprehensive data visualization tools.</p>
-                            
-                            <h4>Design Process</h4>
-                            <p>The project began with stakeholder interviews and contextual inquiry with healthcare professionals. I created information architecture diagrams and conducted card sorting exercises to organize content effectively. Multiple iterations of prototypes were developed and tested with end users, with special attention to accessibility standards.</p>
-                        </div>
-                    </div>
+                
+                <div class="mt-14">
+                    <h4 class="text-2xl mb-5 font-light" style="color: white;">Screenshots</h4>
+                    <p class="italic opacity-60 font-light" style="color: white;">Screenshots will be added later.</p>
                 </div>
             </div>
             
-            <!-- Project 4 -->
+            <!-- Subtle separator -->
+            <div class="w-full h-px bg-gray-800"></div>
+            
+            <!-- Project 3: GTFS Manager -->
             <div class="project-card">
-                <h2>Task Management App</h2>
-                <div class="project-content reverse">
-                    <div class="project-image">
-                        <video controls>
-                            <source src="videos/project4.mp4" type="video/mp4">
+                <div class="flex flex-col md:flex-row justify-between items-baseline mb-10">
+                    <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline" style="color: white;">GTFS Manager</h2>
+                    <div class="text-xl font-light tracking-wide mt-2 md:mt-0 company-name">Trillium Transit</div>
+                </div>
+                
+                <div class="lg:flex gap-16 mt-12">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 relative">
+                        <div class="absolute -inset-0.5 bg-purple-900/20 opacity-20 blur-sm rounded-sm"></div>
+                        <video controls class="w-full relative z-10 rounded-sm">
+                            <source src="videos/gtfs-demo.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span>Mobile App</span>
-                            <span>Interaction Design</span>
-                            <span>Prototyping</span>
+                    <div class="lg:w-1/2">
+                        <div class="flex flex-wrap gap-5 mb-8">
+                            <span class="text-sm tracking-wider" style="color: white;">Transit Data</span>
+                            <span class="text-sm tracking-wider opacity-50" style="color: white;">•</span>
+                            <span class="text-sm tracking-wider" style="color: white;">GTFS</span>
+                            <span class="text-sm tracking-wider opacity-50" style="color: white;">•</span>
+                            <span class="text-sm tracking-wider" style="color: white;">Data Management</span>
                         </div>
-                        <div class="project-description">
-                            <h4>Functionality</h4>
-                            <p>A productivity app designed to help users organize tasks, set priorities, and track progress. Features include customizable categories, deadline reminders, and progress statistics to improve user productivity.</p>
+                        
+                        <div>
+                            <h4 class="text-2xl mt-10 mb-5 font-light" style="color: white;">Improvements</h4>
+                            <p class="mb-8 font-light leading-relaxed" style="color: white;">The GTFS Manager was redesigned to simplify the creation, editing, and validation of transit data. Key improvements included a visual route editor, automated validation tools, and a more intuitive schedule management interface. The tool now provides real-time feedback on data quality and compliance with GTFS specifications.</p>
                             
-                            <h4>Design Process</h4>
-                            <p>The design process started with competitive analysis and user surveys to identify key features. I created user personas and journey maps to guide the design decisions. After sketching initial concepts, I developed interactive prototypes in Figma that were tested with potential users. The final design incorporated microinteractions and animations to enhance the user experience.</p>
+                            <h4 class="text-2xl mt-12 mb-5 font-light" style="color: white;">Process</h4>
+                            <p class="font-light leading-relaxed" style="color: white;">The design process began with extensive research into GTFS data structure and workflows. I analyzed common errors in existing datasets and interviewed transit planners to understand their challenges. After mapping out the complex relationships in GTFS data, I developed a modular interface that breaks down the complexity while maintaining data integrity. The design went through multiple iterations of usability testing before implementation.</p>
                         </div>
                     </div>
+                </div>
+                
+                <div class="mt-14">
+                    <h4 class="text-2xl mb-5 font-light" style="color: white;">Screenshots</h4>
+                    <p class="italic opacity-60 font-light" style="color: white;">Screenshots will be added later.</p>
                 </div>
             </div>
         </section>
+        
+        <!-- Footer -->
+        <footer class="mt-32 pt-12 border-t border-gray-800">
+            <p class="text-sm text-center" style="color: white;">&copy; 2023 • All Rights Reserved</p>
+        </footer>
     </div>
 </body>
 </html>
+
