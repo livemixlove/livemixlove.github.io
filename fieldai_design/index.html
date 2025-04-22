@@ -58,7 +58,7 @@
         }
         
         .company-name {
-            color: #7b68ee !important;
+            color: #928cb9 !important;
         }
     </style>
 </head>
@@ -67,11 +67,8 @@
         <!-- Header with subtle divider -->
         <header class="mb-24 pb-6 border-b border-gray-800">
             <div class="flex justify-between items-center">
-                <div class="contact-info">
-                    <p class="text-sm tracking-wider" style="color: white;">Email: your.email@example.com</p>
-                </div>
-                <div class="text-sm tracking-wider" style="color: white;">
-                    UI/UX Designer
+                <div>
+                    <h1 class="text-2xl font-light tracking-wide" style="color: white;">Paul Clay • Design Portfolio</h1>
                 </div>
             </div>
         </header>
@@ -79,9 +76,10 @@
         <section id="projects" class="space-y-32">
             <!-- Project 1: Data Visualization Tool -->
             <div class="project-card">
-                <div class="flex flex-col md:flex-row justify-between items-baseline mb-10">
-                    <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline" style="color: white;">Data Visualization Tool</h2>
-                    <div class="text-xl font-light tracking-wide mt-2 md:mt-0 company-name">Agility Robotics</div>
+                <div class="flex-grow">
+                    <div class="flex items-baseline">
+                        <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline w-full" style="color: white;">Data Visualization Tool <span class="text-xl font-light tracking-wide ml-4 company-name">Boston Dynamics</span></h2>
+                    </div>
                 </div>
                 
                 <div class="lg:flex gap-16 mt-12">
@@ -97,13 +95,44 @@
                             <span class="text-sm tracking-wider opacity-50" style="color: white;">•</span>
                             <span class="text-sm tracking-wider" style="color: white;">User Experience</span>
                         </div>
-                        
                         <div>
                             <h4 class="text-2xl mt-10 mb-5 font-light" style="color: white;">Improvements</h4>
                             <p class="mb-8 font-light leading-relaxed" style="color: white;">The Data Visualization Tool was redesigned to improve data clarity and user interaction. Key improvements included a more intuitive interface, enhanced chart readability, and streamlined navigation between different visualization types. The tool now offers customizable dashboards and real-time data filtering capabilities.</p>
                             
                             <h4 class="text-2xl mt-12 mb-5 font-light" style="color: white;">Process</h4>
                             <p class="font-light leading-relaxed" style="color: white;">The redesign process began with analyzing user pain points and identifying key opportunities for improvement. After conducting stakeholder interviews and usability testing, I developed wireframes and interactive prototypes that were iteratively refined based on user feedback. The final implementation resulted in a more powerful yet accessible visualization system.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-14">
+                    <h4 class="text-2xl mb-5 font-light" style="color: white;">Screenshots</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Screenshot 1 -->
+                        <div class="bg-gray-900 rounded-md p-5 border border-gray-800">
+                            <div class="w-full h-48 bg-gray-800 rounded-md flex items-center justify-center mb-4">
+                                <span style="color: #888;">Screenshot 1</span>
+                            </div>
+                            <h5 class="text-lg mb-2" style="color: white;">Main Dashboard View</h5>
+                            <p class="text-sm" style="color: #aaa;">Description of the dashboard visualization features and key components shown in this screenshot.</p>
+                        </div>
+                        
+                        <!-- Screenshot 2 -->
+                        <div class="bg-gray-900 rounded-md p-5 border border-gray-800">
+                            <div class="w-full h-48 bg-gray-800 rounded-md flex items-center justify-center mb-4">
+                                <span style="color: #888;">Screenshot 2</span>
+                            </div>
+                            <h5 class="text-lg mb-2" style="color: white;">Data Filtering Interface</h5>
+                            <p class="text-sm" style="color: #aaa;">Description of the filtering options and how users can customize the data display.</p>
+                        </div>
+                        
+                        <!-- Screenshot 3 -->
+                        <div class="bg-gray-900 rounded-md p-5 border border-gray-800">
+                            <div class="w-full h-48 bg-gray-800 rounded-md flex items-center justify-center mb-4">
+                                <span style="color: #888;">Screenshot 3</span>
+                            </div>
+                            <h5 class="text-lg mb-2" style="color: white;">Visualization Controls</h5>
+                            <p class="text-sm" style="color: #aaa;">Description of the controls that allow users to manipulate and interact with the visualizations.</p>
                         </div>
                     </div>
                 </div>
@@ -114,9 +143,12 @@
             
             <!-- Project 2: Data Review Tool -->
             <div class="project-card">
-                <div class="flex flex-col md:flex-row justify-between items-baseline mb-10">
-                    <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline" style="color: white;">Data Review Tool</h2>
-                    <div class="text-xl font-light tracking-wide mt-2 md:mt-0 company-name">Boston Dynamics</div>
+                <div class="flex flex-row justify-between items-center mb-10">
+                    <div class="flex-grow">
+                        <div class="flex items-baseline">
+                            <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline w-full" style="color: white;">Data Review Tool <span class="text-xl font-light tracking-wide ml-4 company-name">Boston Dynamics</span></h2>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="lg:flex flex-row-reverse gap-16 mt-12">
@@ -135,7 +167,6 @@
                             <span class="text-sm tracking-wider opacity-50" style="color: white;">•</span>
                             <span class="text-sm tracking-wider" style="color: white;">Workflow Optimization</span>
                         </div>
-                        
                         <div>
                             <h4 class="text-2xl mt-10 mb-5 font-light" style="color: white;">Improvements</h4>
                             <p class="mb-8 font-light leading-relaxed" style="color: white;">The Data Review Tool was enhanced to streamline the data validation and review process. The redesign focused on improving data presentation, adding batch processing capabilities, and implementing a more efficient approval workflow. The tool now features error highlighting, comparison views, and automated quality checks.</p>
@@ -148,7 +179,34 @@
                 
                 <div class="mt-14">
                     <h4 class="text-2xl mb-5 font-light" style="color: white;">Screenshots</h4>
-                    <p class="italic opacity-60 font-light" style="color: white;">Screenshots will be added later.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Screenshot 1 -->
+                        <div class="bg-gray-900 rounded-md p-5 border border-gray-800">
+                            <div class="w-full h-48 bg-gray-800 rounded-md flex items-center justify-center mb-4">
+                                <span style="color: #888;">Screenshot 1</span>
+                            </div>
+                            <h5 class="text-lg mb-2" style="color: white;">Review Interface</h5>
+                            <p class="text-sm" style="color: #aaa;">Description of the main review interface showing the data presentation layout and key functions.</p>
+                        </div>
+                        
+                        <!-- Screenshot 2 -->
+                        <div class="bg-gray-900 rounded-md p-5 border border-gray-800">
+                            <div class="w-full h-48 bg-gray-800 rounded-md flex items-center justify-center mb-4">
+                                <span style="color: #888;">Screenshot 2</span>
+                            </div>
+                            <h5 class="text-lg mb-2" style="color: white;">Comparison View</h5>
+                            <p class="text-sm" style="color: #aaa;">Description of the side-by-side comparison functionality for reviewing multiple data sets.</p>
+                        </div>
+                        
+                        <!-- Screenshot 3 -->
+                        <div class="bg-gray-900 rounded-md p-5 border border-gray-800">
+                            <div class="w-full h-48 bg-gray-800 rounded-md flex items-center justify-center mb-4">
+                                <span style="color: #888;">Screenshot 3</span>
+                            </div>
+                            <h5 class="text-lg mb-2" style="color: white;">Approval Workflow</h5>
+                            <p class="text-sm" style="color: #aaa;">Description of the approval interface showing the status tracking and validation process.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -157,9 +215,10 @@
             
             <!-- Project 3: GTFS Manager -->
             <div class="project-card">
-                <div class="flex flex-col md:flex-row justify-between items-baseline mb-10">
-                    <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline" style="color: white;">GTFS Manager</h2>
-                    <div class="text-xl font-light tracking-wide mt-2 md:mt-0 company-name">Trillium Transit</div>
+                <div class="flex-grow">
+                    <div class="flex items-baseline">
+                        <h2 class="text-4xl font-normal tracking-wide leading-tight title-underline w-full" style="color: white;">GTFS Manager <span class="text-xl font-light tracking-wide ml-4 company-name">Trillium Transit</span></h2>
+                    </div>
                 </div>
                 
                 <div class="lg:flex gap-16 mt-12">
@@ -178,7 +237,6 @@
                             <span class="text-sm tracking-wider opacity-50" style="color: white;">•</span>
                             <span class="text-sm tracking-wider" style="color: white;">Data Management</span>
                         </div>
-                        
                         <div>
                             <h4 class="text-2xl mt-10 mb-5 font-light" style="color: white;">Improvements</h4>
                             <p class="mb-8 font-light leading-relaxed" style="color: white;">The GTFS Manager was redesigned to simplify the creation, editing, and validation of transit data. Key improvements included a visual route editor, automated validation tools, and a more intuitive schedule management interface. The tool now provides real-time feedback on data quality and compliance with GTFS specifications.</p>
@@ -191,7 +249,34 @@
                 
                 <div class="mt-14">
                     <h4 class="text-2xl mb-5 font-light" style="color: white;">Screenshots</h4>
-                    <p class="italic opacity-60 font-light" style="color: white;">Screenshots will be added later.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Screenshot 1 -->
+                        <div class="bg-gray-900 rounded-md p-5 border border-gray-800">
+                            <div class="w-full h-48 bg-gray-800 rounded-md flex items-center justify-center mb-4">
+                                <span style="color: #888;">Screenshot 1</span>
+                            </div>
+                            <h5 class="text-lg mb-2" style="color: white;">Route Editor</h5>
+                            <p class="text-sm" style="color: #aaa;">Description of the visual route editor interface showing the mapping functionality and route creation tools.</p>
+                        </div>
+                        
+                        <!-- Screenshot 2 -->
+                        <div class="bg-gray-900 rounded-md p-5 border border-gray-800">
+                            <div class="w-full h-48 bg-gray-800 rounded-md flex items-center justify-center mb-4">
+                                <span style="color: #888;">Screenshot 2</span>
+                            </div>
+                            <h5 class="text-lg mb-2" style="color: white;">Schedule Management</h5>
+                            <p class="text-sm" style="color: #aaa;">Description of the schedule management interface showing the timetable editor and frequency settings.</p>
+                        </div>
+                        
+                        <!-- Screenshot 3 -->
+                        <div class="bg-gray-900 rounded-md p-5 border border-gray-800">
+                            <div class="w-full h-48 bg-gray-800 rounded-md flex items-center justify-center mb-4">
+                                <span style="color: #888;">Screenshot 3</span>
+                            </div>
+                            <h5 class="text-lg mb-2" style="color: white;">Validation Tools</h5>
+                            <p class="text-sm" style="color: #aaa;">Description of the validation tools showing error detection and compliance checking for GTFS data.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
