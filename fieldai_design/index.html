@@ -135,6 +135,93 @@
         .video-thumbnail-container:hover img {
              transform: scale(1.05);
         }
+        
+        /* Image Slider/Lightbox Styles */
+        .image-slider {
+            position: relative;
+            overflow: hidden;
+            height: 450px;
+            background-color: #111;
+        }
+
+        .slider-images {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-images img {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            cursor: pointer;
+            object-fit: cover;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .slider-nav button {
+            pointer-events: all; /* Make buttons clickable */
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 4px;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .slider-nav button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Reusing lightbox styles for images */
+        #image-lightbox {
+            /* Same as #video-lightbox */
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #image-lightbox.active {
+            display: flex;
+        }
+
+        #image-lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            display: block;
+        }
+
+        #image-lightbox .lightbox-close {
+            position: absolute;
+            top: 20px; /* Position closer for images */
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
     </style>
 </head>
 <body class="bg-black font-sans antialiased tracking-wide" style="color: white;">
@@ -158,9 +245,17 @@
                 </div>
                 
                 <div class="lg:flex gap-16 mt-12">
-                    <div class="lg:w-1/2 mb-12 lg:mb-0 relative">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 relative image-slider">
                         <div class="absolute -inset-0.5 bg-purple-900/20 opacity-20 blur-sm rounded-sm"></div>
-                        <img src="images/DigitSensors-1024x746.png" alt="Data Visualization Tool Screenshot" class="w-full relative z-10 rounded-sm">
+                        <div class="slider-images relative z-10 rounded-sm">
+                            <img src="images/agility-robot-in-action.jpg" alt="Agility Robot in Action" class="slider-image">
+                            <img src="images/agility_screen_use.jpg" alt="Agility Screen Use" class="slider-image">
+                            <img src="images/DigitSensors-1024x746.png" alt="Digit Sensors" class="slider-image">
+                        </div>
+                        <div class="slider-nav">
+                            <button class="prev-btn">&lt;</button>
+                            <button class="next-btn">&gt;</button>
+                        </div>
                     </div>
                     <div class="lg:w-1/2">
                         <div class="flex flex-wrap gap-5 mb-8">
@@ -197,7 +292,7 @@
                 <div class="lg:flex flex-row-reverse gap-16 mt-12">
                     <div class="lg:w-1/2 mb-12 lg:mb-0 relative">
                         <div class="absolute -inset-0.5 bg-purple-900/20 opacity-20 blur-sm rounded-sm"></div>
-                        <div class="video-thumbnail-container relative z-10" data-video-src="videos/data_review_tool-2021-12-10_10.58.51.mp4">
+                        <div class="video-thumbnail-container relative z-10" data-video-src="videos/data_review_tool_cropped3.mp4">
                             <img src="images/data_review_tool_thumb.png" alt="Data Review Tool Video Thumbnail" class="w-full">
                             <!-- Placeholder for video source -->
                         </div>
@@ -324,10 +419,16 @@
             </div>
         </section>
         
-        <!-- Lightbox Modal -->
+        <!-- Image Lightbox Modal -->
+        <div id="image-lightbox">
+            <img id="lightbox-image" src="" alt="Full Size Image">
+            <button class="lightbox-close">&times;</button>
+        </div>
+        
+        <!-- Video Lightbox Modal -->
         <div id="video-lightbox" class="lightbox">
             <div class="lightbox-content">
-                <video id="lightbox-video" controls autoplay muted playsinline></video>
+                <video id="lightbox-video" controls muted playsinline></video>
                 <button class="lightbox-close">&times;</button>
             </div>
         </div>
@@ -335,42 +436,94 @@
     </div>
 
     <script>
-        const lightbox = document.getElementById('video-lightbox');
+        const videoLightbox = document.getElementById('video-lightbox');
         const lightboxVideo = document.getElementById('lightbox-video');
         const videoTriggers = document.querySelectorAll('.video-thumbnail-container');
-        const closeButton = document.querySelector('.lightbox-close');
+        const videoCloseButton = videoLightbox.querySelector('.lightbox-close');
 
         videoTriggers.forEach(trigger => {
             trigger.addEventListener('click', () => {
                 const videoSrc = trigger.getAttribute('data-video-src');
                 if (videoSrc) {
                     lightboxVideo.src = videoSrc;
-                    lightbox.classList.add('active');
-                    // Muted autoplay is generally allowed
-                    lightboxVideo.play().catch(error => console.error("Video autoplay failed:", error)); 
+                    videoLightbox.classList.add('active');
                 }
             });
         });
 
-        const closeLightbox = () => {
-            lightbox.classList.remove('active');
+        const closeVideoLightbox = () => {
+            videoLightbox.classList.remove('active');
             lightboxVideo.pause();
-            lightboxVideo.src = ''; // Stop loading the video
+            lightboxVideo.src = '';
         }
 
-        closeButton.addEventListener('click', closeLightbox);
+        videoCloseButton.addEventListener('click', closeVideoLightbox);
         
-        // Optional: Close lightbox when clicking the background overlay
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) { // Check if the click is on the overlay itself
-                closeLightbox();
+        videoLightbox.addEventListener('click', (e) => {
+            if (e.target === videoLightbox) {
+                closeVideoLightbox();
             }
         });
         
-        // Optional: Close lightbox with Escape key
+        // Image Slider Logic
+        const imageSlider = document.querySelector('.image-slider');
+        if (imageSlider) {
+            const sliderImagesContainer = imageSlider.querySelector('.slider-images');
+            const images = imageSlider.querySelectorAll('.slider-image');
+            const prevBtn = imageSlider.querySelector('.prev-btn');
+            const nextBtn = imageSlider.querySelector('.next-btn');
+            const imageLightbox = document.getElementById('image-lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const imageCloseButton = imageLightbox.querySelector('.lightbox-close');
+            
+            let currentIndex = 0;
+            const totalImages = images.length;
+
+            function updateSlider() {
+                sliderImagesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
+                updateSlider();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
+                updateSlider();
+            });
+
+            // Image Lightbox Functionality
+            images.forEach(img => {
+                img.addEventListener('click', () => {
+                    lightboxImage.src = img.src;
+                    imageLightbox.classList.add('active');
+                });
+            });
+
+            const closeImageLightbox = () => {
+                imageLightbox.classList.remove('active');
+                lightboxImage.src = '';
+            }
+
+            imageCloseButton.addEventListener('click', closeImageLightbox);
+            
+            imageLightbox.addEventListener('click', (e) => {
+                if (e.target === imageLightbox) {
+                    closeImageLightbox();
+                }
+            });
+        }
+        
+        // Global Escape Key Listener for both lightboxes
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
+            if (e.key === 'Escape') {
+                if (videoLightbox.classList.contains('active')) {
+                    closeVideoLightbox();
+                }
+                if (imageLightbox && imageLightbox.classList.contains('active')) {
+                    closeImageLightbox();
+                }
             }
         });
     </script>
